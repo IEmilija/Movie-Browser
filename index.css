@@ -1,0 +1,103 @@
+body {
+    background-color: #bdbdbd;
+}
+
+/* Navbar start */
+.navbar-text {
+    font-size: 30px;
+    color: whitesmoke;
+}
+
+.custom-item{
+    border: 1px solid #a3b4c8;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.genre-input {
+    border: 1px solid #a3b4c8;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+/* Navbar end */
+
+/* Toast start */
+.toast {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 100px;
+    background-color: white;
+    border: 2px solid #03C988;
+    border-radius: 5px;
+}
+
+.toast-body {
+    padding: 10px;
+    color: #03C988;
+    font-size: 21px;
+    font-weight: bold;
+}
+/* Toast end */
+
+/* Movie cards start */
+.movie-card {
+    border: 2px solid #0d1218;
+    box-shadow: 0px 4px 8px rgba(33, 37, 41, 0.9);
+}
+
+.card-body-hidden {
+    display: none;
+}
+
+.card:hover .card-body-hidden {
+    display: block;
+    transition: filter 0.3s ease;
+    color: white;
+}
+
+.card:hover .my-img {
+    filter: brightness(0.3) blur(3px);
+    transition: filter 0.3s ease;
+}
+
+.the-plot {
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    white-space: normal;
+    text-overflow: ellipsis;
+}
+/* Movie cards end */
+
+/* Modal start */
+.custom-modal {
+    border: 3px solid #212529;
+    box-shadow: 0px 4px 8px rgba(33, 37, 41, 0.9);
+}
+
+.custom-btn-primary{
+    background-color: #03C988;
+    box-shadow: 4px 4px 8px rgba(33, 37, 41, 0.9);
+}
+
+.custom-modal-img {
+    border: 2px solid #212529;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(33, 37, 41, 0.9);
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+/* Modal end */

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Browser</title>
+
+    <script src="https://kit.fontawesome.com/5f4e19aa8d.js" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+    <link href="index.css" rel="stylesheet">
+
+    <link href="jquery-ui-1.13.2/jquery-ui.css" rel="stylesheet">
+    <script src="jquery-ui-1.13.2/external/jquery/jquery.js"></script>
+    <script src="jquery-ui-1.13.2/jquery-ui.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Navbar start-->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container">
+            <span class="navbar-text">EMB</span>
+            <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item custom-item">
+                        <a id="showAddMovieForm" class="nav-link" href="javascript:void(0)">Add Movie</a>
+                    </li>
+                </ul>
+
+                <!-- modal for adding a new movie start -->
+                <div class="modal fade" id="addMovieModal" tabindex="-1" aria-labelledby="addMovieModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content custom-modal">
+                            <div class="modal-body">
+                                <h3 class="modal-title custom-modal-title text-center mt-3 mb-5"
+                                    id="addMovieModalLabel">Add New
+                                    Movie</h3>
+                                <form id="addMovieForm">
+                                    <div class="mb-3">
+                                        <label for="movieTitle" class="form-label">Movie Title</label>
+                                        <input type="text" class="form-control" id="movieTitle" maxlength="250"
+                                            required>
+                                        <div id="movieTitleError" class="error-message"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="movieGenre" class="form-label">Movie Genre</label>
+                                        <input type="text" class="form-control" id="movieGenre" maxlength="250"
+                                            required>
+                                        <div id="movieGenreError" class="error-message"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="releaseDate" class="form-label">Release Date (DD-MM-YYYY)</label>
+                                        <input type="text" class="form-control" id="releaseDate"
+                                            placeholder="DD-MM-YYYY" maxlength="10" required>
+                                        <div id="releaseDateError" class="error-message"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="movieDescription" class="form-label">Description</label>
+                                        <textarea class="form-control" id="movieDescription" rows="3" maxlength="500"
+                                            required></textarea>
+                                        <div id="movieDescriptionError" class="error-message"></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn custom-btn-primary m-2"
+                                    id="submitMovie">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal for adding a new movie end -->
+
+                <!-- Toast start -->
+                <div class="toast">
+                    <div class="toast-body">
+                    </div>
+                </div>
+                <!-- Toast end -->
+
+                <form class="d-flex" id="genreSearchForm">
+                    <div id="inputGroup" class="input-group">
+                        <input id="genreInput" class="genre-input form-control" type="text"
+                            placeholder="Search by genre">
+                        <button id="genreSearchBtn" class="btn btn-outline-secondary" type="button">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar end -->
+
+    <!-- Movie container start -->
+    <div class="container movie-container">
+        <h2 class="mt-4">All movies</h2>
+        <div id="movieRow" class="mt-3">
+        </div>
+
+        <!-- Modal for showing more information start -->
+        <div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="movieModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg custom-modal-dialog">
+                <div class="modal-content custom-modal-content">
+                    <div class="modal-body d-flex align-items-center p-5">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img class="modal-img img-fluid custom-modal-img mt-2" id="modalImg" src=""
+                                    alt="Movie Poster" />
+                            </div>
+                            <div class="col-md-6">
+                                <div class="movie-details">
+                                    <h5 class="modal-title custom-modal-title pb-3" id="modalTitle"></h5>
+                                    <p id="modalPlot"></p>
+                                    <p id="modalYear"></p>
+                                    <p id="modalGenre"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal for showing more information end -->
+
+    </div>
+    <!-- Movie container end -->
+
+    <!-- Footer container start-->
+    <footer class="footer mt-5 py-2 bg-dark">
+        <div class="container text-light text-center">
+            <p>April 2024</p>
+        </div>
+    </footer>
+    <!-- Footer container end -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+<script src="index.js"></script>
+
+</html>
